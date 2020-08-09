@@ -1,0 +1,69 @@
+{% extends 'basic.html' %}
+{% block body %}
+<style>
+	*{
+		color: rgb(255, 255,255);
+	}
+	.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 2px solid #a7a7a7;
+}
+#component{
+	color: rgb(255, 255, 255);
+	text-decoration: underline;
+}
+</style>
+<div class="content">
+<div class="table my-5 mx-auto" style="max-width: 920px; overflow: initial;">
+  <div class="caption" style="text-align: center;">
+    Availability of Blood Stock
+  </div>
+  <table class="table table-bordered">
+    <col />
+    <colgroup span="8"></colgroup>
+    <tbody>
+      <tr>
+        <th rowspan="2">State</th>
+        <th rowspan="2">District</th>
+        <th rowspan="2">BloodBank Name</th>
+        <th colspan="8" scope="colgroup" style="text-align: center;">
+          Whole Blood (W/B)
+        </th>
+        <th rowspan="2">Last Updated</th>
+      </tr>
+      <tr>
+        <th scope="col">A+</th>
+        <th scope="col">A-</th>
+        <th scope="col">B+</th>
+        <th scope="col">B-</th>
+        <th scope="col">AB+</th>
+        <th scope="col">AB-</th>
+        <th scope="col">O+</th>
+        <th scope="col">O-</th>
+      </tr>
+      {% for blood in Blood_informations %}
+      <tr>
+        <th scope="row">{{blood.State}}</th>
+        <!-- District Name -->
+        <td>{{blood.District}}</td>
+        <!-- BloodBank Name -->
+        <td>{{blood.BloodBank_Name}}</td>
+        <!-- Availability of Blood IN THIS ORDER(A+,A-,B+,B-,AB+,AB-,O+,O-) -->
+        <td>{{blood.A_Positive_Blood}}</td>
+        <td>{{blood.A_Negative_Blood}}</td>
+        <td>{{blood.B_Positive_Blood}}</td>
+        <td>{{blood.B_Negative_Blood}}</td>
+        <td>{{blood.AB_Positive_Blood}}</td>
+        <td>{{blood.AB_Negative_Blood}}</td>
+        <td>{{blood.O_Positive_Blood}}</td>
+        <td>{{blood.O_Negative_Blood}}</td>
+        <!-- Last Updated -->
+        <td>{{blood.Last_Updated}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+{% endblock body %}

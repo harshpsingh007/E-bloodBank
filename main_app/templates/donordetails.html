@@ -1,0 +1,43 @@
+{% extends 'basic.html' %} {% block body %}
+<div class="row">
+  <img
+    src="/static/sandonorimage.jpg"
+    alt=""
+    srcset=""
+    style="max-width: 500px; min-width: 0px;margin:25px"
+  />
+  <div
+    class="donorbox"
+    style="
+      margin: auto;
+      border: 2px solid blue;
+      width: 700px;
+      height: 500px;
+      background-color: #eaa14e;
+    "
+  >
+    <div class="row">
+      <img
+        src="/media/{{donor.donor_profile_pic}}"
+        alt=""
+        srcset=""
+        class="rounded-circle"
+        style="width: 150px;margin-left: 40px;margin-top: 80px;"
+      />
+      <div class="namemail" style="margin: auto;">
+        <h2 style="margin: auto;"><span class="badge badge-primary">BloodGroup</span>:-<span class="badge badge-danger">{{donor.donor_bloodgroup}}</span></h2>
+        <h4 style="margin: auto;"><span class="badge badge-primary">Name</span>:-<span class="badge badge-danger">{{donor.donor_name}}</span></h4>
+        <h4 style="margin: auto;"><span class="badge badge-primary">E-Mail</span>:-<span class="badge badge-danger">{{donor.donor_email_id}}</span></h4>
+      </div>
+      <div class="adress" style="margin-left: 290px;" >
+        <h4 style="margin: auto;"><span class="badge badge-primary">Adress1</span>:-<span class="badge badge-danger">{{donor.donor_address}},{{donor.donor_city}}</span></h4>
+        <h4 style="margin: auto;"><span class="badge badge-primary">District</span>:-<span class="badge badge-danger">{{donor.donor_district}}</span></h4>
+        <h4 style="margin: auto;"><span class="badge badge-primary">State</span>:-<span class="badge badge-danger">{{donor.donor_state}}</span></h4>
+        <h4 style="margin: auto;"><span class="badge badge-primary">PinCode</span>:-<span class="badge badge-danger">{{donor.donor_pincode}}</span></h4>
+        <h4 style="margin: auto;"><span class="badge badge-primary">Phone No.</span>:-<span class="badge badge-danger">{{donor.donor_phone_number}}</span></h4>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock body %}

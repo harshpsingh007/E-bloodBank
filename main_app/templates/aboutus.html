@@ -1,0 +1,61 @@
+{% extends 'basic.html' %}
+
+{% block title %}
+    About Us
+{% endblock title %}
+
+{% block css %}
+    .card-title{
+        color : black;
+        font-family: 'Permanent Marker', cursive;
+    }
+    .card-text{
+        color : black;
+        font-family: 'Baloo Bhai 2', cursive;
+    }
+    .card{
+        margin:2px;
+    }
+    .card:hover{
+        border:2px solid black;
+        box-shadow:10px 5px rgb(0,0,0)
+    }
+{% endblock css %}
+    
+
+{% block body %}
+<div class="head mt-3" style="text-align: center;  font-family: 'Baloo Bhai 2', cursive;
+"><h1><b style="color: white;">Created By:-</b></h1></div>
+<div class="container mt-5" style="display: flex;">
+<div class="card" style="width: 18rem;border-radius: 5rem;">
+    <img class="card-img-top" style="border-radius: 2rem;max-height: 270.58px;" src="/static/harshlogo.png" alt="Card image cap">
+    <div class="card-body" style="color: rgb(255, 0, 0);">
+      <h5 class="card-title">Harsh Pratap Singh</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+  </div>
+<div class="card" style="width: 18rem;border-radius: 5rem;">
+    <img class="card-img-top" style="border-radius: 5rem;max-height: 270.58px;" src="/static/sudhanshu.jpeg" alt="Card image cap">
+    <div class="card-body" style="color: rgb(255, 0, 0);">
+      <h5 class="card-title">Sudhanshu Chaudhary</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+  </div>
+<div class="card" style="width: 18rem;border-radius: 5rem;">
+    <img class="card-img-top" style="border-radius: 5rem;max-height: 270.58px;" src="/static/sandeep.jpeg" alt="Card image cap">
+    <div class="card-body" style="color: rgb(255, 0, 0);">
+      <h5 class="card-title">Sandeep Sisodia</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+  </div>
+<div class="card" style="width: 18rem;border-radius: 5rem;">
+    <img class="card-img-top" style="border-radius: 5rem;max-height: 270.58px;" src="/static/udit.jpeg" alt="Card image cap">
+    <div class="card-body" style="color: rgb(255, 0, 0);">
+      <h5 class="card-title">Udit Mishra</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+  </div>
+</div>
+{% endblock body %}
+    
+    

@@ -1,0 +1,126 @@
+{% extends 'basic.html' %}
+
+{% block title %}
+    Donor Registration Page
+{% endblock title %}
+    
+{%block body %}
+<div class="container mt-4" style="max-width: 600px;">
+  <form action="/main_app/donorRegitration" method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <div class="form-group">
+      <label for="fname"><b>Enter Your First Name</b></label>
+      <input type="text" class="form-control" id="donor_fname" name="donor_fname" placeholder="Enter Your First Name" />
+    </div>
+    <div class="form-group">
+      <label for="mname"><b>Enter Your Middle Name</b></label>
+      <input type="text" class="form-control" id="donor_mname" name="donor_mname" placeholder="Enter Your Middel Name" />
+    </div>
+    <div class="form-group">
+      <label for="lname"><b>Enter Your Last Name</b></label>
+      <input type="text" class="form-control" id="donor_lname" name="donor_lname" placeholder="Enter Your Last Name" />
+    </div>
+    <div class="form-group">
+        <label for="bloodGroup"><b>Select Your Blood Group</b></label>
+        <select class="form-control" id="donor_bloodGroup" name="donor_bloodGroup">
+          <option>Select Your BloodGroup</option>
+          <option style="color: black;" value="A+">A+</option>
+          <option style="color: black;" value="A-">A-</option>
+          <option style="color: black;" value="B+">B+</option>
+          <option style="color: black;" value="B-">B-</option>
+          <option style="color: black;" value="AB+">AB+</option>
+          <option style="color: black;" value="AB-">AB-</option>
+          <option style="color: black;" value="O+">O+</option>
+          <option style="color: black;" value="O-">O-</option>
+        </select>
+      </div>
+
+    <div class="form-group">
+      <label for="address"><b>Enter Your Address</b></label>
+      <input type="text" class="form-control" id="donor_address1" name="donor_address1" placeholder="Enter Your Address line 1" />
+      <input type="text" class="form-control mt-2" id="donor_address2" name="donor_address2" placeholder="Enter Your Address line 2" />
+    </div>
+    <div class="form-group">
+      <label for="state"><b>Select Your State</b></label>
+      <select class="form-control" id="donor_stateSelect" name="donor_stateSelect">
+        <option>Select Your State</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="district"><b>Select Your District</b></label>
+      <select class="form-control" id="donor_districtSelect" name="donor_districtSelect">
+        <option>Select Your District</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="city"><b>Enter Your City</b></label>
+      <input type="text" class="form-control" id="donor_city" placeholder="Enter Your City" name="donor_city" />
+    </div>
+    <div class="form-group">
+      <label for="PinCode"><b>Enter Your Pincode</b></label>
+      <input type="tel" class="form-control" id="donor_PinCode" placeholder="Enter Your Pincode" name="donor_PinCode"/>
+    </div>
+    <div class="form-group">
+      <label for="phone"><b>Enter Your PhoneNumber</b></label>
+      <input type="tel" class="form-control" id="donor_phone" placeholder="Enter Your PhoneNumber" name="donor_phone"/>
+    </div>
+
+    <div class="form-group">
+      <label for="email"><b>Email address</b></label>
+      <input type="email" class="form-control" id="donor_email" placeholder="name@example.com" name="donor_email" />
+    </div>
+    <div class="form-group">
+      <label for="profilepic"><b>Upload Your Profile Picture</b></label>
+      <input type="file" style="width: 40%;" class="form-control-file" id="donor_image" name="donor_image">
+    </div>
+    <div class="text-center my-2">
+      <button type="submit" id="contactFormSubmit" style="font-weight: 900;color: rgb(255, 0, 0);" class="btn btn-light">
+        Submit
+      </button>
+    </div>      
+  </form>
+</div>
+{% endblock body %}
+
+{% block js %}
+<script>
+let stateSelect = document.getElementById('donor_stateSelect');
+let districtSelect = document.getElementById('donor_districtSelect')
+function getdata(){
+let url = "/static/stateDistrict.json";
+fetch(url).then((response)=>{
+return response.json();
+}).then((data)=>{
+let statejson = data.states;
+statejson.forEach((index,element) => {
+let indexdistricts = index.districts;
+let stateOption = document.createElement('option')
+stateOption.setAttribute("id",index.state)
+stateOption.setAttribute("value",index.state)
+stateOption.setAttribute("class",element)
+stateOption.style.color = "black"
+stateOption.innerHTML = index.state;
+stateSelect.appendChild(stateOption)
+});
+let selectedState = "";
+stateSelect.addEventListener('blur',()=>{
+  let val = stateSelect.value;
+  let attribute = document.getElementById(`${val}`)
+  selectedState = attribute.getAttribute('class')
+
+
+for(let statewisedistricts of data.states[selectedState].districts){
+let districtOption = document.createElement('option')
+districtOption.setAttribute("id",statewisedistricts)
+districtOption.style.color = "black"
+districtOption.innerHTML = statewisedistricts;
+districtSelect.appendChild(districtOption)
+stateSelect.addEventListener('click',()=>{
+districtSelect.removeChild(districtOption)
+})
+}
+})
+})
+}
+getdata()
+</script>
+{% endblock js %}

@@ -1,0 +1,125 @@
+{% extends 'basic.html' %}
+{% block title %}
+Contact Us
+{% endblock title %}
+{% block css %}
+  .form-control{
+    background-color: white;
+  }
+  .form-group{
+    colour : white;
+  }
+  #contactFormSubmit:hover{
+    text-shadow: 2px 2px black;
+
+  }
+{% endblock css %}
+{%block body %}
+<div class="container mt-4" style="max-width: 600px;">
+  <form method="post" action="/main_app/contactus">{% csrf_token %}
+    <div class="form-group">
+      <label for="fname"><b style="color: white;">Enter Your First Name</b></label>
+      <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter Your First Name" required />
+    </div>
+    <div class="form-group">
+      <label for="mname"><b style="color: white;">Enter Your Middle Name</b></label>
+      <input type="text" class="form-control" id="mname" name="mname" placeholder="Enter Your Middel Name" />
+    </div>
+    <div class="form-group">
+      <label for="lname"><b style="color: white;">Enter Your Last Name</b></label>
+      <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Your Last Name" required/>
+    </div>
+
+    <div class="form-group">
+      <label for="address"><b style="color: white;">Enter Your Address</b></label>
+      <input type="text" class="form-control" id="address1" name="address1" placeholder="Enter Your Address line 1" required />
+      <input type="text" class="form-control mt-2" id="address2" name="address2" placeholder="Enter Your Address line 2"/>
+    </div>
+    <div class="form-group">
+      <label for="state"><b style="color: white;">Select Your State</b></label>
+      <select class="form-control" id="stateSelect" name="stateSelect" required>
+        <option>Select Your State</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="district"><b style="color: white;">Select Your District</b></label>
+      <select class="form-control" id="districtSelect" name="districtSelect" required>
+        <option>Select Your District</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="city"><b style="color: white;">Enter Your City</b></label>
+      <input type="text" class="form-control" id="city" name="city" placeholder="Enter Your City" required />
+    </div>
+    <div class="form-group">
+      <label for="PinCode"><b style="color: white;">Enter Your Pincode</b></label>
+      <input type="text" class="form-control" id="PinCode" name="PinCode" placeholder="Enter Your Pincode" required/>
+    </div>
+    <div class="form-group">
+      <label for="phone"><b style="color: white;">Enter Your PhoneNumber</b></label>
+      <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter Your PhoneNumber" required />
+    </div>
+
+    <div class="form-group">
+      <label for="email"><b style="color: white;">Email address</b></label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required />
+    </div>
+
+    <div class="form-group">
+      <label for="contactQuery"><b style="color: white;">Enter Your Query</b></label>
+      <textarea class="form-control" id="contactQuery" name="contactQuery" rows="3" required></textarea>
+    </div>
+    <div class="text-center my-2" id="contactformdiv">
+      <button type="submit" id="contactFormSubmit" style="font-weight: 900;color: rgb(255, 0, 0);" class="btn btn-light">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock body %}
+
+{% block js %}
+<script>
+let stateSelect = document.getElementById('stateSelect');
+let districtSelect = document.getElementById('districtSelect')
+function getdata(){
+let url = "/static/stateDistrict.json";
+fetch(url).then((response)=>{
+return response.json();
+}).then((data)=>{
+let statejson = data.states;
+statejson.forEach((index,element) => {
+let indexdistricts = index.districts;
+let stateOption = document.createElement('option')
+stateOption.setAttribute("id",index.state)
+stateOption.setAttribute("value",index.state)
+stateOption.setAttribute("class",element)
+stateOption.style.color = "black"
+stateOption.innerHTML = index.state;
+stateSelect.appendChild(stateOption)
+});
+let selectedState = "";
+stateSelect.addEventListener('blur',()=>{
+  let val = stateSelect.value;
+  let attribute = document.getElementById(`${val}`)
+  selectedState = attribute.getAttribute('class')
+console.log(selectedState)
+
+
+for(let statewisedistricts of data.states[selectedState].districts){
+let districtOption = document.createElement('option')
+districtOption.setAttribute("id",statewisedistricts)
+districtOption.style.color = "black"
+districtOption.innerHTML = statewisedistricts;
+districtSelect.appendChild(districtOption)
+stateSelect.addEventListener('click',()=>{
+districtSelect.removeChild(districtOption)
+})
+}
+})
+})
+}
+getdata()
+</script>
+
+{% endblock js %}

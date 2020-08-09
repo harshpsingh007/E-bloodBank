@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="shortcut icon" href="/static/favicon.png" type="image/x-icon">
+<title>E-BloodBank Auth</title>
+</head>
+<body>
+<h1>E-BloodBank</h1>
+{% if user.is_authenticated %}
+<a href="/accounts/logout">Logout</a>
+{% else %}
+<a href="/accounts/login">Login</a>
+{% endif %}
+{% block content %}
+{% endblock %}
+<p>Copyright @ E-BloodBank</p>
+</body>
+</html>
