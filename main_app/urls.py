@@ -13,4 +13,5 @@ urlpatterns = [
     path('donorRegitration',views.donorRegistration,name='donorRegitration'),
     path('donordetails/<int:donorid>/',views.donordetails,name='donordetails'),
     path('search',views.search,name='search'),
+    path('donorProfile/<int:donorid>',views.donorProf,name='donorProfile'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -24,13 +24,15 @@
   <img src="media/{{item.donor_profile_pic}}" class="rounded-circle" alt="..." style="min-width: 0px;max-width: 250px;min-height: 0px;max-height: 250px;margin: auto;">
   <div class="card-body">
     <h5 class="card-title">{{item.donor_name}}</h5>
+    <h5 class="card-title">{{item.donor_email_id}}</h5>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item"><b>Blood Group :</b> {{item.donor_bloodgroup}}</li>
+    <li class="list-group-item"><b>Pincode :</b>{{item.donor_pincode}}</li>
     <li class="list-group-item"><b>Address :</b>{{item.donor_address}},{{item.donor_city}},{{item.donor_district}},{{i.donor_state}}</li>
+    <li class="list-group-item"><b>Phone Number :</b>{{item.donor_phone_number}}</li>
   </ul>
   <div class="card-body">
-    <a href="/main_app/donordetails/{{forloop.counter}}" class="card-link"><b>Donor Details</b></a>
   </div>
 </div>
 {% endfor %}

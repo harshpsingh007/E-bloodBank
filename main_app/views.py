@@ -77,3 +77,8 @@ def search(request):
         messages.warning(request,"Donor Found")
     params={'searchedDonor':searchedDonor,"query":query}
     return render(request,"search.html",params)
+
+@login_required
+def donorProf(request,donorid):
+    donor = Donor_details.objects.filter(id=donorid)
+    return render(request,'donorProfile.html',{'donor':donor[0]})

@@ -1,0 +1,59 @@
+{% extends 'basic.html' %} 
+{% block css %}
+#mybg{
+    display:none;
+}
+body{
+    background:#dc3545;
+}
+{% endblock css %}
+{% block body %}
+<div class="row">
+  <img
+    src="/static/sandonorimage.jpg"
+    alt=""
+    srcset=""
+    style="max-width: 500px; min-width: 0px;margin:25px"
+  />
+  <div
+    class="donorbox"
+    style="
+      margin: auto;
+      border: 2px solid blue;
+      width: 700px;
+      height: 600px;
+      background-color: #eaa14e;
+    "
+  >
+    <div class="row">
+    <div class="box" style="width: 230px;height:500px ;margin-left: 15px;display: inline;">
+      <img
+        src="/media/{{donor.donor_profile_pic}}"
+        alt=""
+        srcset=""
+        class="rounded-circle"
+        style="width: 150px;margin-left: 40px;margin-top: 40px;"
+      />
+      <button type="button" class="btn btn-danger" style="margin-left: 75px;margin-top: 50px;width: 100px;">Profile</button>
+      <button type="button" class="btn btn-danger" style="margin-left: 75px;margin-top: 5px;width: 100px;">Request</button>
+      <button type="button" class="btn btn-danger" style="margin-left: 75px;margin-top: 5px;width: 100px;">Alert</button>
+      <button type="button" class="btn btn-danger" style="margin-left: 75px;margin-top: 5px;width: 100px;">Donate</button>
+      <button type="button" class="btn btn-danger" style="margin-left: 75px;margin-top: 5px;width: 100px;">Statistic</button>
+      <button type="button" class="btn btn-danger" style="margin-left: 75px;margin-top: 5px;width: 100px;">Locate</button>
+      <button type="button" class="btn btn-success" style="margin-left: 75px;margin-top: 5px;width: 100px;"><a style="text-decoration: none;color: white;" href="/accounts/logout/">Logout</a></button>
+    </div>
+      <div class="namemail" style="margin: auto;">
+        <h2 style="margin: auto;"><span class="badge badge-primary">BloodGroup</span>:-<span class="badge badge-danger">{{donor.donor_bloodgroup}}</span></h2>
+        <h4 style="margin: auto;"><span class="badge badge-primary">Name</span>:-<span class="badge badge-danger">{{donor.donor_name}}</span></h4>
+        <h4 style="margin: auto;"><span class="badge badge-primary">E-Mail</span>:-<span class="badge badge-danger">{{donor.donor_email_id}}</span></h4>
+        <h4 style="margin: auto;"><span class="badge badge-primary">Adress1</span>:-<span class="badge badge-danger">{{donor.donor_address}},{{donor.donor_city}}</span></h4>
+        <h4 style="margin: auto;"><span class="badge badge-primary">District</span>:-<span class="badge badge-danger">{{donor.donor_district}}</span></h4>
+        <h4 style="margin: auto;"><span class="badge badge-primary">State</span>:-<span class="badge badge-danger">{{donor.donor_state}}</span></h4>
+        <h4 style="margin: auto;"><span class="badge badge-primary">PinCode</span>:-<span class="badge badge-danger">{{donor.donor_pincode}}</span></h4>
+        <h4 style="margin: auto;"><span class="badge badge-primary">Phone No.</span>:-<span class="badge badge-danger">{{donor.donor_phone_number}}</span></h4>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock body %}
